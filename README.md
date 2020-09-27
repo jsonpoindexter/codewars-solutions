@@ -94,6 +94,18 @@ func unitsToWorth(units: [Int], worth: [Int]) -> Int {
   return units.enumerated().reduce(0) { (accumulate, current) in return accumulate + worth[current.0] * current.1}
 ```
 
+# Rust
+## [Find the divisors!](https://www.codewars.com/kata/544aed4c4a30184e960010f4) - 7kyu
+```rust
+fn divisors(integer: u32) -> Result<Vec<u32>, String> {
+    let vec = (2..integer-1).filter(|x| integer % *x == 0).collect::<Vec<_>>();
+    match vec.is_empty() {
+        true => Err(String::from(integer.to_string() + " is prime")),
+        false => Ok(vec),
+    }
+}
+```
+
 
 # JavaScript
 
@@ -135,6 +147,40 @@ function createPhoneNumber(numbers){
 }
 ```
 
+## [String ends with?](https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d) - 7kyu
+```javascript
+function solution(str, ending){
+  return ending === str.slice(str.length - ending.length, str.length)
+}
+```
+
+## [Array.diff](https://www.codewars.com/kata/523f5d21c841566fde000009) - 6kyu
+```javascript
+function arrayDiff(arrayA, arrayB) {
+  return arrayA.reduce((diff, currentItem) => {
+     if(!arrayB.some(b => b === currentItem)) diff.push(currentItem) 
+     return diff
+  }, [])
+}
+```
+
+## [Find the odd int](https://www.codewars.com/kata/54da5a58ea159efa38000836) - 6kyu
+```javascript
+function findOdd(numArray) {
+    return numArray.find((num) => {
+        return numArray.filter(subNum => {
+            return subNum === num
+        }).length % 2
+    })
+}
+```
+
+## [Multiply](https://www.codewars.com/kata/50654ddff44f800200000004) - 8kyu
+```javascript
+function multiply(a, b){
+  return a * b
+}
+```
 
 # Template
 ## [Title](URL) - Xkyu
