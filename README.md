@@ -1,3 +1,25 @@
+# [Valid Braces](https://www.codewars.com/kata/5277c8a221e209d3f6000b56) - 6 kyu
+#### Completed: Sunday, October 4, 2020
+### TypeScript
+```typescript
+const OPEN_BRACES = '([{'
+const CLOSE_BRACES = ')]}'
+
+export function validBraces(braces: string): boolean {
+  let currOpenBraces = '' // current open braces
+  for(let brace of braces) {
+    if (OPEN_BRACES.includes(brace)) currOpenBraces += brace // If open braces add to current open braces array
+    else { // If close brace
+      if(CLOSE_BRACES.indexOf(brace) === OPEN_BRACES.indexOf(currOpenBraces[currOpenBraces.length - 1])) { // and current close brace matches our last open brace
+        currOpenBraces = currOpenBraces.substring(0, currOpenBraces.length - 1) // Pop off the last open braces
+      }
+      else return false // We have an invalid braces
+    }
+  }
+  return !!currOpenBraces.length ? false : true
+}
+```
+
 # [Valid Parentheses](https://www.codewars.com/kata/52774a314c2333f0a7000688) - 5 kyu
 #### Completed: Wednesday, September 30, 2020
 ### JavaScript
