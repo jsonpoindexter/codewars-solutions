@@ -1,3 +1,73 @@
+# [Duplicate Encoder](https://www.codewars.com/kata/54b42f9314d9229fd6000d9c) - 6 kyu
+#### Completed: Thursday, November 5, 2020
+### TypeScript
+```typescript
+export function duplicateEncode(word: string){
+  let wordArr = word.toLowerCase().split('')
+  const indexArr: number[][] = [] // Hold arr of char indexes. Example: din => [ [ 0 ], [ 1 ], [ 2 ] ]
+  wordArr
+    .filter((char, index) => wordArr.indexOf(char) === index) // Only itterate over unique chars
+    .forEach((char, index) => { // Popoulate indexArr
+      let currentIndex = 0;
+      indexArr[index] = []
+      while(wordArr.indexOf(char, currentIndex) > -1 && currentIndex < wordArr.length) {
+        indexArr[index].push(wordArr.indexOf(char, currentIndex))
+        currentIndex = wordArr.indexOf(char, currentIndex) + 1
+      }
+    })
+  indexArr.forEach((wordIndexes) => wordIndexes.forEach(wordIndex => wordArr[wordIndex] = wordIndexes.length > 1 ? ')' : '('))
+  return wordArr.join('')
+}
+
+
+```
+
+# [Counting Duplicates](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1) - 6 kyu
+#### Completed: Friday, November 6, 2020
+### TypeScript
+```typescript
+export function duplicateCount(text: string): number{
+  return text
+    .toLowerCase()
+    .split('')
+    .reduce((accumulator, item, index, source) => {
+            const nextItemIndex = source.indexOf(item, index + 1)
+            const lastItemIndex = source.lastIndexOf(item)
+            return accumulator + (index !== nextItemIndex && nextItemIndex === lastItemIndex ? 1 : 0)         
+    }
+  ,0)
+}
+```
+
+# [Human Readable Time](https://www.codewars.com/kata/52685f7382004e774f0001f7) - 5 kyu
+#### Completed: Thursday, November 5, 2020
+### TypeScript
+```typescript
+export function humanReadable(seconds:number):string {
+  const hours = Math.floor(seconds / (60 * 60))
+  const minutes = Math.floor((seconds - (hours * 60 * 60)) / 60)
+  seconds = Math.floor(seconds - (hours * 60 * 60) - (minutes * 60))
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+}
+```
+
+# [Are they the "same"?](https://www.codewars.com/kata/550498447451fbbd7600041c) - 6 kyu
+#### Completed: Thursday, October 8, 2020
+### Kotlin
+```kotlin
+fun comp(a: IntArray?, b: IntArray?): Boolean {
+    if(a == null || b == null || !a.size.equals(b.size)) return false
+    val bMut = b.toMutableList()
+    a.forEach { aNum ->
+        val index = bMut.indexOfFirst { it == aNum * aNum}
+        if (index >= 0 ) bMut.removeAt(index)
+        else return false
+        
+    }
+    return bMut.size.equals(0)
+}
+```
+
 # [Valid Braces](https://www.codewars.com/kata/5277c8a221e209d3f6000b56) - 6 kyu
 #### Completed: Sunday, October 4, 2020
 ### TypeScript
